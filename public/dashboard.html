@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafío Sessions | Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-full h-screen bg-gradient-to-b from-black to-gray-700">
+  
+  <div class="max-w-[1350px] mx-auto px-4">
+
+    <nav class="h-[80px] w-full flex items-center justify-between text-white">      
+      
+      <a href="/"> <h1 class="text-xl font-bold">Desafío Sessions</h1>  </a>             
+      
+      <p class="font-semibold text-lg text-gray-400"> Bienvenido, <span id="spanUsername" class="text-white"> PEPE </span>  </p>
+
+      <ul class="flex items-center gap-x-5 font-semibold text-lg text-gray-400">
+        <li class="capitalize hover:text-white hover:scale-105 duration-300 cursor-pointer"><a href="/dashboard">dashboard</a></li>        
+        <li class="capitalize hover:text-white hover:scale-105 duration-300 cursor-pointer">
+          <form>
+            <button>Log out</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="py-4 w-full bg-red-400">
+      <div class="w-[650px] mx-auto bg-green-400">
+        <h3>Bienvenido a tu Dashboard</h3>
+      </div>
+    </section>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
