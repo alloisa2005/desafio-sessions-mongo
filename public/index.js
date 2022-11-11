@@ -2,6 +2,15 @@
 const formLogin = document.getElementById('formLogin');
 const btnLogin = document.getElementById('btnLogin');
 
+fetch('/dashboard')
+  .then(resp => resp.json())
+  .then(json => {    
+    if(json.status === 'error'){      
+    }else{
+      location.replace('dashboard.html');
+    }
+  })
+
 btnLogin.addEventListener('click', (e) => {
   e.preventDefault();
 
@@ -17,8 +26,7 @@ btnLogin.addEventListener('click', (e) => {
         'Content-Type': 'application/json'
     }
   }).then(result => result.json())
-    .then( resp => {
-      console.log(resp);
+    .then( resp => {      
 
       if(resp.status === 'error'){
         document.getElementById('msjError').innerHTML = resp.msg;
