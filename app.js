@@ -25,7 +25,7 @@ app.use(session({
     secret: 'miPalabraSecreta',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 600000 }
+    cookie: { maxAge: 60000 }
 }))
 app.use(express.json());
 
