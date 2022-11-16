@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
@@ -8,18 +10,18 @@ const cookieParser = require("cookie-parser");
 const UserModel = require("./models/User.model")
 
 const PORT = process.env.PORT || 8080;
-const mongoURL = 'mongodb://localhost:27017/aae-sesiones';
 
 const app = express();
 
 ///////////////// Conexión MONGO DB /////////////////////////////////
-mongoose.connect(mongoURL, {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,   
   useUnifiedTopology: true
-}).then( res => console.log('Base de datos conectada!!'))
+}).then( res => console.log('Base de datos lista para usar!!'))
+  .catch( err => console.log(`Error: ${err.message}`)) 
 /////////////////////////////////////////////////////////////////////
 const store = new MongoDBSession({
-  uri: mongoURL,
+  uri: process.env.MONGO_URI,
   collection: 'mySessions'
 })
 /////////////////////////////////////////////////////////////////////
