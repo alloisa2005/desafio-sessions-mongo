@@ -6,8 +6,8 @@ const session = require("express-session");
 const MongoDBSession = require('connect-mongodb-session')(session)
 const bcrypt = require('bcryptjs');
 const cookieParser = require("cookie-parser");
-
 const UserModel = require("./models/User.model")
+
 
 const PORT = process.env.PORT || 8080;
 
@@ -25,18 +25,19 @@ const store = new MongoDBSession({
   collection: 'mySessions'
 })
 /////////////////////////////////////////////////////////////////////
-
+app.use(express.urlencoded({extended: false}))
 app.use(express.static('public'))
 app.use(cookieParser());
 app.use(session({
     key: 'user_sid',
-    secret: 'miPalabraSecreta',
+    secret: process.env.SESSION_SECRET_WORD,
     resave: false,
     saveUninitialized: false,  
     store: store,  
-    cookie: { maxAge: 60000000 }
+    cookie: { maxAge: 1000*60*10 }  // 10 minutos
 }))
 app.use(express.json());
+
 
 app.get('/register', (req, res) => {
   res.redirect('./register.html')
@@ -104,7 +105,8 @@ app.post('/login', async (req, res) =>{
   } catch (error) {
     return res.status(400).send({status: 'error', msg: error.message})
   }
-})
+}) 
+
 
 app.get('/logout', (req, res) => {
   req.session.destroy(err => {
